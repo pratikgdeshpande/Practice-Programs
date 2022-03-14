@@ -1,0 +1,20 @@
+# def get_failed_pub_batch_assets():
+#     print("Connecting to database ...")
+#     conn = psycopg2.connect(host=os.environ["DB_HOST"],
+#                             database=os.environ["DB_DATABASE"], user=os.environ["DB_USER"],
+#                             password=os.environ["DB_PASSWORD"], port=os.environ["DB_PORT"])
+#     print("Connected to database.")
+#     cursor = conn.cursor()
+#     query = "SELECT publication_batch_assets.asset_id, publication_batches.id, publication_batches.request_id  FROM " \
+#             "publication_batches JOIN publication_batch_assets ON " \
+#             "publication_batch_assets.publication_batch_id = publication_batches.id WHERE metadata_only = true AND " \
+#             "created_on >= current_date - INTERVAL '14 day' AND created_on <= current_date - INTERVAL '24 hour' AND " \
+#             "success IS NULL ORDER BY created_on asc"
+#     cursor.execute(query)
+#     results = cursor.fetchall()
+#     print("Database querying completed")
+#     chunks = [results[x:x + chunk_size] for x in range(0, len(results), chunk_size)]
+#     # print(chunks)
+#     print("Processing completed")
+#     cursor.close()
+#     conn.close()
